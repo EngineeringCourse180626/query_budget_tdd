@@ -1,5 +1,10 @@
 package com.odde.budget;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+
+import static java.time.format.DateTimeFormatter.ofPattern;
+
 public class Budget {
 
     private String month;
@@ -8,5 +13,9 @@ public class Budget {
     public Budget(String month, int amount) {
         this.month = month;
         this.amount = amount;
+    }
+
+    public LocalDate getFirstDay() {
+        return YearMonth.parse(month, ofPattern("yyyyMM")).atDay(1);
     }
 }

@@ -17,6 +17,11 @@ public class BudgetBot {
             return 0;
 
         Duration duration = new Duration(start, end);
+        Budget budget = budgets.get(0);
+
+        if (duration.getEnd().isBefore(budget.getFirstDay()))
+            return 0;
+
         return duration.getDays();
     }
 
