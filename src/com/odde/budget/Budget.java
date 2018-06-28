@@ -26,4 +26,8 @@ public class Budget {
     public LocalDate getLastDay() {
         return YearMonth.parse(month, ofPattern("yyyyMM")).atEndOfMonth();
     }
+
+    public int getDailyAmount() {
+        return amount / getFirstDay().lengthOfMonth();
+    }
 }

@@ -19,9 +19,7 @@ public class BudgetBot {
         Duration duration = new Duration(start, end);
         Budget budget = budgets.get(0);
 
-        double dailyAmount = budget.getAmount() / budget.getFirstDay().lengthOfMonth();
-
-        return dailyAmount * duration.getOverlappingDays(new Duration(budget.getFirstDay(), budget.getLastDay()));
+        return budget.getDailyAmount() * duration.getOverlappingDays(new Duration(budget.getFirstDay(), budget.getLastDay()));
     }
 
 }
