@@ -12,12 +12,16 @@ public class Duration {
         this.end = end;
     }
 
-    public double getOverlappingDays(Duration anotherDuration) {
-        if (isNoOverlapping(anotherDuration))
+    public double getOverlappingDays(Duration another) {
+        if (isNoOverlapping(another))
             return 0;
 
-        LocalDate effectiveEnd = end.isBefore(anotherDuration.end) ? end : anotherDuration.end;
-        LocalDate effectiveStart = start.isAfter(anotherDuration.start) ? start : anotherDuration.start;
+        LocalDate effectiveStart = start.isAfter(another.start) ? start : another.start;
+        LocalDate effectiveEnd = end.isBefore(another.end) ? end : another.end;
+
+        if (effectiveStart.isAfter(effectiveEnd))
+            return 0;
+
         return Period.between(effectiveStart, effectiveEnd).getDays() + 1;
     }
 

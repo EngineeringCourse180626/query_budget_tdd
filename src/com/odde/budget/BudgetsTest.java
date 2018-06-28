@@ -69,6 +69,15 @@ public class BudgetsTest {
                 of(2018, 4, 1));
     }
 
+    @Test
+    public void invalid_duration() {
+        givenBudgets(new Budget("201803", 31));
+
+        assertTotalEquals(0,
+                of(2018, 3, 10),
+                of(2018, 3, 2));
+    }
+
     private void assertTotalEquals(double expected, LocalDate start, LocalDate end) {
         assertEquals(expected, budgetBot.query(start, end), 0.1);
     }
