@@ -30,4 +30,8 @@ public class Budget {
     public int getDailyAmount() {
         return amount / getFirstDay().lengthOfMonth();
     }
+
+    public Duration getDuration() {
+        return new Duration(getFirstDay(), getLastDay());
+    }
 }
