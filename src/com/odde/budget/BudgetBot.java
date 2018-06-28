@@ -23,6 +23,9 @@ public class BudgetBot {
     }
 
     private double getOverlappingDays(Duration duration, Budget budget) {
+        if (duration.getStart().isAfter(budget.getLastDay()))
+            return 0;
+
         if (duration.getEnd().isBefore(budget.getFirstDay()))
             return 0;
 
