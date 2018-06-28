@@ -1,5 +1,6 @@
+package com.odde.budget;
+
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 public class BudgetBot {
@@ -15,6 +16,8 @@ public class BudgetBot {
         if (budgets.isEmpty())
             return 0;
 
-        return Period.between(start, end).getDays() + 1;
+        Duration duration = new Duration(start, end);
+        return duration.getDays();
     }
+
 }

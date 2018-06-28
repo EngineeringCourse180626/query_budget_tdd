@@ -1,3 +1,5 @@
+package com.odde.budget;
+
 public class Budget {
 
     private String month;
