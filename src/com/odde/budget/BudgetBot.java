@@ -19,6 +19,10 @@ public class BudgetBot {
         Duration duration = new Duration(start, end);
         Budget budget = budgets.get(0);
 
+        return getOverlappingDays(duration, budget);
+    }
+
+    private double getOverlappingDays(Duration duration, Budget budget) {
         if (duration.getEnd().isBefore(budget.getFirstDay()))
             return 0;
 
