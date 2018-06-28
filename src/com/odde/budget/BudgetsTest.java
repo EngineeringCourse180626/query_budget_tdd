@@ -60,14 +60,14 @@ public class BudgetsTest {
                 of(2018, 4, 1));
     }
 
-//    @Test
-//    public void duration_overlap_budget_first_day() {
-//        givenBudgets(new Budget("201804", 30));
-//
-//        assertTotalEquals(1,
-//                of(2018, 3, 30),
-//                of(2018, 4, 1));
-//    }
+    @Test
+    public void duration_overlap_budget_first_day() {
+        givenBudgets(new Budget("201804", 30));
+
+        assertTotalEquals(1,
+                of(2018, 3, 30),
+                of(2018, 4, 1));
+    }
 
     private void assertTotalEquals(double expected, LocalDate start, LocalDate end) {
         assertEquals(expected, budgetBot.query(start, end), 0.1);

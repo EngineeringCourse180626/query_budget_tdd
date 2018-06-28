@@ -28,7 +28,8 @@ public class BudgetBot {
             return 0;
 
         LocalDate effectiveEnd = duration.getEnd().isBefore(budget.getLastDay()) ? duration.getEnd() : budget.getLastDay();
-        return Period.between(duration.getStart(), effectiveEnd).getDays() + 1;
+        LocalDate effectiveStart = duration.getStart().isAfter(budget.getFirstDay()) ? duration.getStart() : budget.getFirstDay();
+        return Period.between(effectiveStart, effectiveEnd).getDays() + 1;
     }
 
     private boolean isNoOverlapping(Duration duration, Budget budget) {
