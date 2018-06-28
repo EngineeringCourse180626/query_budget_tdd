@@ -15,6 +15,10 @@ public class Budget {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public LocalDate getFirstDay() {
         return YearMonth.parse(month, ofPattern("yyyyMM")).atDay(1);
     }

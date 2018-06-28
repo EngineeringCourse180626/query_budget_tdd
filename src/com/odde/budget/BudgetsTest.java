@@ -78,6 +78,15 @@ public class BudgetsTest {
                 of(2018, 3, 2));
     }
 
+    @Test
+    public void daily_amount() {
+        givenBudgets(new Budget("201804", 600));
+
+        assertTotalEquals(60,
+                of(2018, 4, 1),
+                of(2018, 4, 3));
+    }
+
     private void assertTotalEquals(double expected, LocalDate start, LocalDate end) {
         assertEquals(expected, budgetBot.query(start, end), 0.1);
     }
