@@ -1,6 +1,7 @@
 package com.odde.budget;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 public class BudgetBot {
@@ -23,13 +24,15 @@ public class BudgetBot {
     }
 
     private double getOverlappingDays(Duration duration, Budget budget) {
-        if (duration.getStart().isAfter(budget.getLastDay()))
+        if (isNoOverlapping(duration, budget))
             return 0;
 
-        if (duration.getEnd().isBefore(budget.getFirstDay()))
-            return 0;
+        LocalDate effectiveEnd = duration.getEnd().isBefore(budget.getLastDay()) ? duration.getEnd() : budget.getLastDay();
+        return Period.between(duration.getStart(), effectiveEnd).getDays() + 1;
+    }
 
-        return duration.getDays();
+    private boolean isNoOverlapping(Duration duration, Budget budget) {
+        return duration.getStart().isAfter(budget.getLastDay()) || duration.getEnd().isBefore(budget.getFirstDay());
     }
 
 }
