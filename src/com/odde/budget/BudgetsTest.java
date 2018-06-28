@@ -87,6 +87,15 @@ public class BudgetsTest {
                 of(2018, 4, 3));
     }
 
+    @Test
+    public void multiple_budgets() {
+        givenBudgets(new Budget("201802", 28), new Budget("201803", 310));
+
+        assertTotalEquals(101,
+                of(2018, 2, 28),
+                of(2018, 3, 10));
+    }
+
     private void assertTotalEquals(double expected, LocalDate start, LocalDate end) {
         assertEquals(expected, budgetBot.query(start, end), 0.1);
     }

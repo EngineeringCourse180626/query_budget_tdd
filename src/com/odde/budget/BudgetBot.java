@@ -1,7 +1,6 @@
 package com.odde.budget;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class BudgetBot {
     private final BudgetRepo repo;
@@ -11,15 +10,9 @@ public class BudgetBot {
     }
 
     public double query(LocalDate start, LocalDate end) {
-        List<Budget> budgets = repo.findAll();
-
-        if (budgets.isEmpty())
-            return 0;
-
-        Duration duration = new Duration(start, end);
-        Budget budget = budgets.get(0);
-
-        return budget.getOverlappingAmount(duration);
+        return repo.findAll().stream()
+                .mapToDouble(budget -> budget.getOverlappingAmount(new Duration(start, end)))
+                .sum();
     }
 
 }
